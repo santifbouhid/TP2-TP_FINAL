@@ -3,14 +3,13 @@ import express from 'express'
 
 class RecipesRouter {
     constructor() {
-        this.controller = new RecipesController();
         this.router = new express.Router();
+        this.controller = new RecipesController();
     }
 
     start(){
-
-        this.router.get("/recipes", this.controller.getAllRecipes);
-
+        this.router.get("/allRecipes", this.controller.getAllRecipes)
+        this.router.get("/recipes/:id", this.controller.getRecipesById)
         return this.router;
     }
 }

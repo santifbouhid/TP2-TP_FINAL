@@ -1,18 +1,28 @@
 import RecipesModelMem from "./recipes.model.mem.js";
 import RecipesModelMongo from "./recipes.model.mongo.js";
+import UsersModelMem from "./users.model.mem.js";
 
 class Factory {
     static get(persistence){
         switch (persistence) {
             case "MEM":
                 console.log("Persistiendo en la memoria del servidor")
-                return new RecipesModelMem()
+                return {
+                    recipes: new RecipesModelMem(),
+                    users: new UsersModelMem()
+                }
             case "Mongo":
                 console.log("Persistiendo en Mongo")
-                return new RecipesModelMongo()
+                return {
+                    recipes: new RecipesModelMongo()
+                    //users: new UsersModelMongo()
+                }
             default:
                 console.log("Persistiendo por default en MongoDB")
-                return new RecipesModelMongo()
+                return {
+                    recipes: new RecipesModelMongo()
+                    //users: new UsersModelMongo()
+                }        
         }
     }
 }
