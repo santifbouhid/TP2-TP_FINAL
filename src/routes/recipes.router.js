@@ -10,6 +10,8 @@ class RecipesRouter {
     start(){
         this.router.get("/allRecipes", this.controller.getAllRecipes)
         this.router.get("/recipes/:id", this.controller.getRecipesById)
+        this.router.delete("/recipes/delete/:id",this.controller.deleteRecipesById)
+        
         return this.router;
     }
 }

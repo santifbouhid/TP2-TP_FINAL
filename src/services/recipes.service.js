@@ -15,6 +15,10 @@ class RecipesService {
         return await this.model.getRecipesById(id)
     }
 
+    deleteRecipesById = async(id) =>{
+        return await this.model.deleteRecipesById(id)
+    }
+
     
 }
 
