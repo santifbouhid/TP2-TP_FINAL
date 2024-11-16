@@ -27,7 +27,22 @@ class RecipesController {
             const deletedRecipe = await this.service.deleteRecipesById(id)
             res.status(200).send(deletedRecipe)
         }
+    }
 
+    updateRecipe = async (req, res) => {
+        const { id } = req.params;
+        const data = req.body;
+        const newRecipe = await this.service.updateRecipe(id, data);
+        res.send(newRecipe);
+    }
+    uploadNewRecipe = async (req, res) => {
+        const newRecipe = req.body
+        if (JSON.stringify(newRecipe) === "{}") {
+            res.status(400).send("El cuerpo no puede estar vacio")
+        } else {
+            const newRec = await this.service.uploadNewRecipe(newRecipe)
+            res.status(200).send(newRec)
+        }
     }
 }
 

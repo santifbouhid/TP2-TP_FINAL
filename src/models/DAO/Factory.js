@@ -1,6 +1,7 @@
 import RecipesModelMem from "./recipes.model.mem.js";
 import RecipesModelMongo from "./recipes.model.mongo.js";
 import UsersModelMem from "./users.model.mem.js";
+import UsersModelMongo from "./users.model.mongo.js";
 
 class Factory {
     static get(persistence){
@@ -14,14 +15,14 @@ class Factory {
             case "Mongo":
                 console.log("Persistiendo en Mongo")
                 return {
-                    recipes: new RecipesModelMongo()
-                    //users: new UsersModelMongo()
+                    recipes: new RecipesModelMongo(),
+                    users: new UsersModelMongo()
                 }
             default:
                 console.log("Persistiendo por default en MongoDB")
                 return {
-                    recipes: new RecipesModelMongo()
-                    //users: new UsersModelMongo()
+                    recipes: new RecipesModelMongo(),
+                    users: new UsersModelMongo()
                 }        
         }
     }

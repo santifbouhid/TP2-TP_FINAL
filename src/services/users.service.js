@@ -17,6 +17,13 @@ class UsersService {
     deleteUsersById = async (id) => {
         return await this.model.deleteUsersById(id)
     }
+    getUsersByRol = async (rol) => {
+        return await this.model.getUsersByRol(rol)
+    }
+
+    uploadNewUser = async (user) => {
+        return await this.model.uploadNewUser(user)
+    }
 
 }
 
