@@ -13,6 +13,13 @@ class UsersService {
     getUsersByName = async(name) => {
         return await this.model.getUsersByName(name)
     }
+
+    getUsersByRol = async(rol) => {
+        return await this.model.getUsersByRol(rol)
+    }
+
+
+
     
 }
 
