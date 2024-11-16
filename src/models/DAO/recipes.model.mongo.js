@@ -1,11 +1,9 @@
 import MongoConnection from "../MongoConnection.js"
 import { ObjectId } from "mongodb"
-import config from "../../config.js";
 
 class RecipesModelMongo {
-  constructor() {
+  constructor() {}
 
-  }
   deleteRecipesById = async (id) => {
     const index = recipes.findIndex((e) => e.id == id)
     let resp
@@ -20,8 +18,6 @@ class RecipesModelMongo {
 
   getAllRecipes = async () => {
     const allRecipes = await MongoConnection.db.collection("recipes").find({}).toArray()
-    const gif = await this.getGiphy("pollo")
-    console.log(gif.data[0].images.original.url)
     return allRecipes
   };
 
@@ -31,18 +27,11 @@ class RecipesModelMongo {
     return rec
   }
 
-  getGiphy = async (name) => {
-    const giphyKey = config.GIPHYKEY
-    const gif = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&limit=1&offset0&q=${name}`)
-    const gifJson = gif.json()
-    return gifJson
-  }
-
   getRecipeById = async (id) => {
     const recipe = await MongoConnection.db
       .collection("recipes")
       .findOne({ _id: ObjectId.createFromHexString(id) });
-    return recipe;
+    return recipe
   }
 
   updateRecipe = async (id, data) => {
@@ -51,6 +40,7 @@ class RecipesModelMongo {
       { $set: data }
     );
   };
+
 }
 
 export default RecipesModelMongo;

@@ -1,5 +1,6 @@
 import Factory from "../models/DAO/Factory.js"
 import config from "../config.js"
+import { GiphyFetch } from '@giphy/js-fetch-api'
 
 class RecipesService {
     constructor() {
@@ -12,7 +13,14 @@ class RecipesService {
     }
 
     getRecipesById = async (id) => {
-        return await this.model.getRecipesById(id)
+        const recipe = await this.model.getRecipeById(id)
+        const primerNombre = recipe.name.split(" ")[0]
+        const gif = await this.getGiphy(primerNombre)
+        const url = gif.data[0].url
+        return {
+            gif: url,
+            recipe: recipe
+        };
     }
 
     deleteRecipesById = async (id) => {
@@ -25,6 +33,12 @@ class RecipesService {
         return await this.model.uploadNewRecipe(recipe)
     }
 
+    getGiphy = async (name) => {
+        const giphyKey = config.GIPHYKEY
+        const gf = new GiphyFetch(giphyKey)
+        const result = await gf.search(name, { offset:0, limit:1 });
+        return result
+    }
 
 }
 
