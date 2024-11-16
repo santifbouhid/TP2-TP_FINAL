@@ -19,6 +19,14 @@ class RecipesController {
             res.status(200).send(recipe)
         }
     }
+
+    updateRecipe = async (req, res) => {
+        const { id } = req.params;
+        const data = req.body;
+        const newRecipe = await this.service.updateRecipe(id, data);
+        res.send(newRecipe);
+        
+    }
 }
 
 export default RecipesController;
