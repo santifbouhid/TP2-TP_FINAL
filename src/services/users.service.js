@@ -5,17 +5,20 @@ class UsersService {
     constructor() {
         this.model = Factory.get(config.PERSISTENCE).users
     }
+    getUserById = async (id) => {
+        return await this.model.getUserById(id)
+    }
 
     getAllUsers = async () => {
         return await this.model.getAllUsers()
     }
 
-    getUsersByName = async (name) => {
-        return await this.model.getUsersByName(name)
+    getUserByName = async (name) => {
+        return await this.model.getUserByName(name)
     }
 
-    deleteUsersById = async (id) => {
-        return await this.model.deleteUsersById(id)
+    deleteUserById = async (id) => {
+        return await this.model.deleteUserById(id)
     }
     getUsersByRol = async (rol) => {
         return await this.model.getUsersByRol(rol)

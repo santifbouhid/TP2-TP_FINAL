@@ -1,22 +1,14 @@
 import MongoConnection from "../MongoConnection.js"
-
+import { ObjectId } from "mongodb";
 
 class UsersModelMongo {
     constructor() { }
 
-    getAllUsers = () => {
-        return this.users;
-    };
-
     getUserById = async (id) => {
-        const allUsers = await this.users
-        const user = allUsers.filter(user => user.id === id)
-
-        if (user.length === 0) {
-            return `El usuario con el id ${id} no existe`
-        } else {
-            return user
-        }
+        const user = await MongoConnection.db
+            .collection("users")
+            .findOne({ _id: ObjectId.createFromHexString(id) });
+        return await user
     }
 
     getAllUsers = async () => {
@@ -28,6 +20,12 @@ class UsersModelMongo {
             console.error("Error: ", err.message)
         }
     }
+    getUserByName = async (name) => {
+        const user = await MongoConnection.db
+            .collection("users")
+            .findOne({ username: name });
+        return await user
+    }
 
     getUsersByRol = async (rol) => {
         const data = await MongoConnection.db.collection("users").find({ rol: rol }).toArray()
@@ -37,6 +35,10 @@ class UsersModelMongo {
     uploadNewUser = async (user) => {
         const us = await MongoConnection.db.collection("users").insertOne(user)
         return us
+    }
+    deleteUserById = async (id) => {
+        const user = await MongoConnection.db.collection("users").deleteOne({ _id: ObjectId.createFromHexString(id) })
+        return user
     }
 
 }
