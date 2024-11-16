@@ -9,7 +9,6 @@ class UsersModelMongo {
 
         try {
             const data = await MongoConnection.db.collection("users").find({}).toArray()
-            console.log("Lista de usuarios: ", data)
             return data
         }catch(err) {
             console.error("Error: ", err.message)
@@ -18,19 +17,13 @@ class UsersModelMongo {
 
     getUsersByRol = async (rol) => {
         const data = await MongoConnection.db.collection("users").find({rol: rol}).toArray()
-
         return data
     }
 
-
-
-
-
-
-
-
-
-
+    uploadNewUser = async(user) =>{
+        const us = await MongoConnection.db.collection("users").insertOne(user)
+        return us
+    }
 
 }
 

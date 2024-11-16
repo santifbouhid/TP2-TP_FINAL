@@ -17,10 +17,11 @@ class UsersService {
     getUsersByRol = async(rol) => {
         return await this.model.getUsersByRol(rol)
     }
-
-
-
     
+    uploadNewUser = async(user) => {
+        return await this.model.uploadNewUser(user)
+    }
+
 }
 
 export default UsersService;

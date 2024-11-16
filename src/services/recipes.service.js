@@ -15,6 +15,10 @@ class RecipesService {
         return await this.model.getRecipesById(id)
     }
 
+    uploadNewRecipe = async(recipe) => {
+        return await this.model.uploadNewRecipe(recipe)
+    }
+
     
 }
 

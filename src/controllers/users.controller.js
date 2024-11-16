@@ -30,6 +30,15 @@ class UsersController {
         }
     }
 
+    uploadNewUser = async(req,res) => {
+        const newUser = req.body
+        if (JSON.stringify(newRecipe) === "{}"){
+            res.status(400).send("El cuerpo no puede estar vacio")
+        } else {
+            const newUs = await this.service.uploadNewUser(newUser)
+            res.status(200).send(newUs)
+        }
+    }
 
 }
 

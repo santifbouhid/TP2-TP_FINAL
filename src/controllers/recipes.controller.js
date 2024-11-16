@@ -19,6 +19,16 @@ class RecipesController {
             res.status(200).send(recipe)
         }
     }
+
+    uploadNewRecipe = async(req,res) => {
+        const newRecipe = req.body
+        if (JSON.stringify(newRecipe) === "{}"){
+            res.status(400).send("El cuerpo no puede estar vacio")
+        } else {
+            const newRec = await this.service.uploadNewRecipe(newRecipe)
+            res.status(200).send(newRec)
+        }
+    }
 }
 
 export default RecipesController;
