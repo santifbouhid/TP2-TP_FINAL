@@ -6,7 +6,7 @@ class UsersController {
     }
 
     getAllusers = async (req, res) => {
-        const users = this.service.getAllUsers();
+        const users = await this.service.getAllUsers();
         res.status(200).send(users);
     }
 
@@ -20,6 +20,25 @@ class UsersController {
         }
     }
 
+    getUsersByRol = async (req,res) => {
+        const { rol } = req.params
+        if(rol == null){
+            res.status(400).send("Falta el rol del usuario a buscar")
+        } else {
+            const user = await this.service.getUsersByRol(rol)
+            res.status(200).send(user)
+        }
+    }
+
+    uploadNewUser = async(req,res) => {
+        const newUser = req.body
+        if (JSON.stringify(newRecipe) === "{}"){
+            res.status(400).send("El cuerpo no puede estar vacio")
+        } else {
+            const newUs = await this.service.uploadNewUser(newUser)
+            res.status(200).send(newUs)
+        }
+    }
 
 }
 

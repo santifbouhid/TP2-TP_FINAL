@@ -12,6 +12,7 @@ class RecipesRouter {
         this.router.get("/recipes/:id", this.controller.getRecipesById)
         
         this.router.patch("/update/:id", this.controller.updateRecipe)
+        this.router.post("/newRecipe", this.controller.uploadNewRecipe)
         return this.router;
     }
 }
