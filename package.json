@@ -15,6 +15,7 @@
   "dependencies": {
     "@giphy/js-fetch-api": "^5.6.0",
     "express": "^4.21.1",
-    "mongodb": "^6.10.0"
+    "mongodb": "^6.10.0",
+    "joi": "^17.13.3"
   }
 }
