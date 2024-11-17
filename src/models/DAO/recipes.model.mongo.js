@@ -39,7 +39,28 @@ class RecipesModelMongo {
       { _id: ObjectId.createFromHexString(id) },
       { $set: data }
     );
+    return recipe;
   };
+
+  updateTags = async (id, data) => {
+    try{
+    let resp;
+    if (data.tags !== undefined) {
+        resp = await MongoConnection.db.collection("recipes").updateOne(
+            { _id: ObjectId.createFromHexString(id) },
+            { $set: {"tags": data.tags} }
+          );
+        if (resp.matchedCount === 0){
+          resp = 'El ID es incorrecto';
+        }
+    }else{
+        resp = 'Tags inválidos';
+    }
+    return await resp;
+    } catch(error){
+        console.error(error);
+    }
+}
 
 }
 

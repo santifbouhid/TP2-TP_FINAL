@@ -35,6 +35,13 @@ class RecipesController {
         const newRecipe = await this.service.updateRecipe(id, data);
         res.send(newRecipe);
     }
+    updateTags = async (req, res) => {
+        // Ejemplo Postman: {"tags":["Rico", "Liviano", "Saludable"]}
+        const { id } = req.params;
+        const data = req.body;
+        const newRecipe = await this.service.updateTags(id, data);
+        res.send(newRecipe);
+    }
     uploadNewRecipe = async (req, res) => {
         const newRecipe = req.body
         if (JSON.stringify(newRecipe) === "{}") {

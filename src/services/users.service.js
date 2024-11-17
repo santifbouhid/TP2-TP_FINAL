@@ -31,6 +31,9 @@ class UsersService {
     updateRestrictions = async (id, data) => {
         return await this.model.updateRestrictions(id, data);
     }
+    updateUser = async (id, data) => {
+        return await this.model.updateUser(id, data);
+    }
     
 
 }

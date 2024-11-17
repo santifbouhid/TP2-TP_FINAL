@@ -72,6 +72,18 @@ class UsersController {
         }
     }
 
+    updateUser = async (req, res) => {
+        const { id } = req.params;
+        const data = req.body;
+        if (id == null) {
+            res.status(400).send("ID inválido")
+        } else {
+            const newUser = await this.service.updateUser(id, data);
+            res.send(newUser);
+        }
+        
+    }
+
 }
 
 export default UsersController;

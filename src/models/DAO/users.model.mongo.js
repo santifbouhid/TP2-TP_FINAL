@@ -60,6 +60,15 @@ class UsersModelMongo {
             console.log(error);
         }
     }
+
+    updateUser = async (id, data) => {
+        const user = await MongoConnection.db.collection("users").updateOne(
+          { _id: ObjectId.createFromHexString(id) },
+          { $set: data }
+        );
+        return user;
+    };
+
 }
 
 
