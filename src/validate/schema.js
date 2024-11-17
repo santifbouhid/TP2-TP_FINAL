@@ -13,6 +13,10 @@ export const validateUser = (user) => {
         rol: Joi.string().min(1).max(10).required()
     })
     const { error } = userSchema.validate(user)
-    const result = error ? true : false
+    const result = {
+        error: error ? true : false,
+        errorMessage: error ? error.details[0].message : null
+    }
     return result
 }
+

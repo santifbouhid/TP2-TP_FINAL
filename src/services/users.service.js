@@ -25,12 +25,9 @@ class UsersService {
     }
 
     uploadNewUser = async (user) => {
-        if (!validateUser(user)) {
-            const newUser = await this.model.uploadNewUser(user)
-            return newUser
-        } else {
-            return "Los campos del objeto son incorrectos."
-        }
+        const validate = validateUser(user)
+        const newUser = validate.error ? validate.errorMessage : await this.model.uploadNewUser(user)
+        return newUser
     }
     
     updateRestrictions = async (id, data) => {
