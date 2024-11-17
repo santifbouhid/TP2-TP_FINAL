@@ -33,6 +33,11 @@ class UsersService {
             return "Los campos del objeto son incorrectos."
         }
     }
+    
+    updateRestrictions = async (id, data) => {
+        return await this.model.updateRestrictions(id, data);
+    }
+    
 
 }
 

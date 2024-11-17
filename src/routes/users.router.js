@@ -12,9 +12,9 @@ class UsersRouter {
         this.router.get("/users", this.controller.getAllusers)
         this.router.get("/name/:name", this.controller.getUserByName)
         this.router.delete("/delete/:id", this.controller.deleteUserById)
-
         this.router.get("/rol/:rol", this.controller.getUsersByRol)
         this.router.post("/newUser", this.controller.uploadNewUser)
+        this.router.patch("/update/restrictions/:id", this.controller.updateRestrictions)
 
         return this.router;
     }

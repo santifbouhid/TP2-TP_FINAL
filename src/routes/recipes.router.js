@@ -10,7 +10,7 @@ class RecipesRouter {
     start() {
         this.router.get("/allRecipes", this.controller.getAllRecipes)
         this.router.get("/recipes/:id", this.controller.getRecipesById)
-        this.router.delete("/recipes/delete/:id", this.controller.deleteRecipesById)
+        this.router.delete("/recipes/delete/:id", this.controller.deleteRecipeById)
         this.router.patch("/update/:id", this.controller.updateRecipe)
         this.router.post("/newRecipe", this.controller.uploadNewRecipe)
         return this.router;
