@@ -58,6 +58,19 @@ class UsersController {
             res.status(200).send(newUs)
         }
     }
+    
+    updateRestrictions = async (req, res) => {
+        // Postman:
+        // {"restricciones":["vegan"]}
+        const { id } = req.params;
+        const data = req.body;
+        if (id == null) {
+            res.status(400).send("ID inválido")
+        } else {
+            const deletedUser = await this.service.updateRestrictions(id, data)
+            res.status(200).send(deletedUser)
+        }
+    }
 
 }
 

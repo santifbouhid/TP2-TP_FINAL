@@ -27,6 +27,11 @@ class UsersService {
     uploadNewUser = async (user) => {
         return await this.model.uploadNewUser(user)
     }
+    
+    updateRestrictions = async (id, data) => {
+        return await this.model.updateRestrictions(id, data);
+    }
+    
 
 }
 
