@@ -1,7 +1,6 @@
 import Factory from "../models/DAO/Factory.js"
 import config from "../config.js"
-import { validateUser } from "./validate/schema.js"
-
+import { validateUser } from "../validate/schema.js"
 class UsersService {
     constructor() {
         this.model = Factory.get(config.PERSISTENCE).users
