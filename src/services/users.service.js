@@ -1,5 +1,6 @@
 import Factory from "../models/DAO/Factory.js"
 import config from "../config.js"
+import { validateUser } from "./validate/schema.js"
 
 class UsersService {
     constructor() {
@@ -25,7 +26,12 @@ class UsersService {
     }
 
     uploadNewUser = async (user) => {
-        return await this.model.uploadNewUser(user)
+        if (!validateUser(user)) {
+            const newUser = await this.model.uploadNewUser(user)
+            return newUser
+        } else {
+            return "Los campos del objeto son incorrectos."
+        }
     }
     
     updateRestrictions = async (id, data) => {

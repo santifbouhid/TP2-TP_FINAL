@@ -22,9 +22,8 @@ class RecipesService {
             recipe: recipe
         };
     }
-
-    deleteRecipesById = async (id) => {
-        return await this.model.deleteRecipesById(id)
+    deleteRecipeById = async (id) => {
+        return await this.model.deleteRecipeById(id)
     }
     updateRecipe = async (id, data) => {
         return await this.model.updateRecipe(id, data);
@@ -39,7 +38,7 @@ class RecipesService {
     getGiphy = async (name) => {
         const giphyKey = config.GIPHYKEY
         const gf = new GiphyFetch(giphyKey)
-        const result = await gf.search(name, { offset:0, limit:1 });
+        const result = await gf.search(name, { offset: 0, limit: 1 });
         return result
     }
 

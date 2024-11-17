@@ -150,7 +150,7 @@ class RecipesModelMem {
     }
   }
 
-  deleteRecipesById = async (id) => {
+  deleteRecipeById = async (id) => {
     const index = recipes.findIndex((e) => e.id == id)
     let resp
     if (index == -1) {

@@ -2,18 +2,11 @@ import MongoConnection from "../MongoConnection.js"
 import { ObjectId } from "mongodb"
 
 class RecipesModelMongo {
-  constructor() {}
+  constructor() { }
 
-  deleteRecipesById = async (id) => {
-    const index = recipes.findIndex((e) => e.id == id)
-    let resp
-    if (index == -1) {
-      resp = "El 'id' de la receta a borrar es incorrecto."
-    } else {
-      animals.splice(index, 1)
-      resp = "La receta fue borrada exitosamente"
-    }
-    return resp
+  deleteRecipeById = async (id) => {
+    const recipeDeleted = await MongoConnection.db.collection("recipes").deleteOne({ _id: ObjectId.createFromHexString(id) })
+    return recipeDeleted
   }
 
   getAllRecipes = async () => {
