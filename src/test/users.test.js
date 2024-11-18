@@ -13,9 +13,10 @@ describe('Test de usuarios: ', () => {
         expect(response.status).to.equal(200)
     })
 
+    //este es el que va a fallar
     it('GET Users - user', async () => {
         const response = await urlBase.get("/users/users").set('role', 'user')
-        expect(response.status).to.equal(403)
+        expect(response.status).to.equal(200)
     })
 
     it('POST Users ', async () => {
