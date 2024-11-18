@@ -1,3 +1,51 @@
+/**
+ * @swagger
+ * /users/users:
+ *   get:
+ *     summary: Traer todos los usuarios
+ *     parameters:
+ *       - name: role
+ *         in: header
+ *         required: true
+ *         description: Se necesita rol "admin" para realizar la query.
+ *         schema:
+ *           type: string
+ *           example: admin
+ *     responses:
+ *       200:
+ *         description: Operación exitosa.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example:
+ *                  {
+ *                      "_id": "6737b35bf7320a530ade235b",
+ *                      "username": "admin",
+ *                      "pass": "admin",
+ *                      "nombre": "algo",
+ *                      "apellido": "apellido",
+ *                      "informacion": "info",
+ *                      "pronombre": "",
+ *                      "favoritos": [],
+ *                      "restricciones": [],
+ *                      "rol": "admin"
+ *                  }
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import UsersController from '../controllers/users.controller.js';
 import express from 'express'
 import { roleAuth } from '../middleware/roleAuth.js';
