@@ -19,6 +19,38 @@ class RecipesController {
             res.status(200).send(recipe)
         }
     }
+
+    getRecipesByDifficulty = async (req, res) => {
+        const { difficulty } = req.params
+        if (difficulty == null) {
+            res.status(400).send("Falta la dificultad de la receta a buscar")
+        } else {
+            const recipes = await this.service.getRecipesByDifficulty(difficulty)
+            res.status(200).send(recipes)
+        }
+    }
+
+    getRecipesByIngredient = async (req, res) => {
+        const { ingredient } = req.params
+        if (ingredient == null) {
+            res.status(400).send("Falta el ingrediente de las recetas a buscar")
+        } else {
+            const recipes = await this.service.getRecipesByIngredient(ingredient)
+            res.status(200).send(recipes)
+        }
+
+    }
+
+    getRecipesByRestriction = async (req, res) => {
+        const { apto } = req.params
+        if (apto == null) {
+            res.status(400).send("Faltan restricciones de las recetas a buscar")
+        } else {
+            const recipe = await this.service.getRecipesByRestriction(apto)
+            res.status(200).send(recipe)
+        }
+    }
+
     deleteRecipeById = async (req, res) => {
         const { id } = req.params
         if (id == null) {
@@ -35,6 +67,7 @@ class RecipesController {
         const newRecipe = await this.service.updateRecipe(id, data);
         res.send(newRecipe);
     }
+
     updateTags = async (req, res) => {
         // Ejemplo Postman: {"tags":["Rico", "Liviano", "Saludable"]}
         const { id } = req.params;
@@ -42,6 +75,7 @@ class RecipesController {
         const newRecipe = await this.service.updateTags(id, data);
         res.send(newRecipe);
     }
+
     uploadNewRecipe = async (req, res) => {
         const newRecipe = req.body
         if (JSON.stringify(newRecipe) === "{}") {
