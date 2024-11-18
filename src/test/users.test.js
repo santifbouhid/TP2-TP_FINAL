@@ -9,7 +9,7 @@ describe('Test de usuarios: ', () => {
     const data = generator.randomUser()
 
     it('GET Users - admin', async () => {
-        const response = await urlBase.get("/users/users")
+        const response = await urlBase.get("/users/users").set('role', 'admin')
         expect(response.status).to.equal(200)
     })
 
