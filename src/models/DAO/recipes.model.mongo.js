@@ -10,13 +10,22 @@ class RecipesModelMongo {
   };
 
   getRecipesById = async (id) => {
-    const recipe = await MongoConnection.db
-      .collection("recipes")
-      .findOne({ _id: ObjectId.createFromHexString(id) });
-    return recipe
+      let resp;
+      if(id !== undefined){
+        resp = await MongoConnection.db
+        .collection("recipes")
+        .findOne({ _id: ObjectId.createFromHexString(id) });
+
+        if (resp.matchedCount === 0) {
+          resp = 'El ID es incorrecto';
+        }
+      } else {
+        resp = 'ID invalido'
+      }
+      return resp
   }
 
-  getRecipesByDifficulty = async (apto) => {
+  getRecipesByRestriction = async (apto) => {
     const recipesByDifficulty = await MongoConnection.db.collection("recipes").find({ apto: apto }).toArray()
     return recipesByDifficulty
   }
@@ -26,7 +35,7 @@ class RecipesModelMongo {
     return recipesByIngredient
   }
 
-  getRecipesByRestriction = async (difficulty) => {
+  getRecipesByDifficulty = async (difficulty) => {
     const recipesByRestriction = await MongoConnection.db.collection("recipes").find({ difficulty: difficulty }).toArray()
     return recipesByRestriction
   }

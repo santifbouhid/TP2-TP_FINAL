@@ -142,7 +142,7 @@ class RecipesModelMem {
 
   getRecipesById = async (id) => {
     const allRecipes = await this.recipes;
-    const recipe = allRecipes.filter(r => r.id == id);
+    const recipe = allRecipes.find(r => r.id == id);
     if (recipe.length === 0) {
       return `La receta con la id ${id} no existe`
     } else {
@@ -162,9 +162,16 @@ class RecipesModelMem {
 
   getRecipesByIngredient = async (ingredient) => {
     const allRecipes = await this.recipes
-    const RecipesByIngredient = await allRecipes.filter(r => r.ingredients.includes(ingredient));
+    let RecipesByIngredient = []
+    allRecipes.forEach(recipe => {
+      recipe.ingredients.forEach(ing =>{
+        if(ing.toLowerCase().includes(ingredient.toLowerCase())){
+          RecipesByIngredient.push(recipe)
+        }
+      })
+    })
     if (RecipesByIngredient.length === 0) {
-      return `No existen recetas con este ingrediente: ${apto}! `
+      return `No existen recetas con este ingrediente: ${ingredient}! `
     } else {
       return RecipesByIngredient
     }
@@ -181,12 +188,13 @@ class RecipesModelMem {
   }
 
   deleteRecipeById = async (id) => {
-    const index = recipes.findIndex((e) => e.id == id)
+    const allRecipes = await this.recipes
+    const index = allRecipes.findIndex((e) => e.id == id)
     let resp
     if (index == -1) {
       resp = "El 'id' de la receta a borrar es incorrecto."
     } else {
-      animals.splice(index, 1)
+      allRecipes.splice(index, 1)
       resp = "La receta fue borrada exitosamente"
     }
     return resp
@@ -226,7 +234,8 @@ class RecipesModelMem {
       if (data.tags !== undefined) {
         const index = await this.recipes.findIndex(r => r.id == id)
         if (index > -1) {
-          const newRecipe = { ...this.recipes[index], ...data.tags }
+          const newRecipe = { ...this.recipes[index], ...data }
+          console.log(newRecipe)
           this.recipes.splice(index, 1, newRecipe)
           resp = newRecipe
         } else {
