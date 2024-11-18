@@ -13,8 +13,8 @@ class UsersService {
         return await this.model.getAllUsers()
     }
 
-    getUserByName = async (name) => {
-        return await this.model.getUserByName(name)
+    getUserByUsername = async (name) => {
+        return await this.model.getUserByUsername(name)
     }
 
     deleteUserById = async (id) => {

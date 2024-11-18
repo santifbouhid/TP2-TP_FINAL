@@ -19,12 +19,12 @@ class UsersController {
         res.status(200).send(users);
     }
 
-    getUserByName = async (req, res) => {
+    getUserByUsername = async (req, res) => {
         const { name } = req.params
         if (name == null) {
             res.status(400).send("Falta el nombre del usuario a buscar")
         } else {
-            const user = await this.service.getUserByName(name)
+            const user = await this.service.getUserByUsername(name)
             res.status(200).send(user)
         }
     }
@@ -67,8 +67,8 @@ class UsersController {
         if (id == null) {
             res.status(400).send("ID inválido")
         } else {
-            const deletedUser = await this.service.updateRestrictions(id, data)
-            res.status(200).send(deletedUser)
+            const user = await this.service.updateRestrictions(id, data)
+            res.status(200).send(user)
         }
     }
 

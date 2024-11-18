@@ -20,7 +20,7 @@ class UsersModelMongo {
             console.error("Error: ", err.message)
         }
     }
-    getUserByName = async (name) => {
+    getUserByUsername = async (name) => {
         const user = await MongoConnection.db
             .collection("users")
             .findOne({ username: name });
