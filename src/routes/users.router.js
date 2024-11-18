@@ -32,6 +32,41 @@
  *                      "rol": "admin"
  *                  }
  */
+/**
+ * @swagger
+ * /users/id/{id}:
+ *   get:
+ *     summary: Trae un usuario por ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: Introduzca el ID del usuario a buscar
+ *         schema:
+ *           type: string
+ *           example: 6737b35bf7320a530ade235b
+ *     responses:
+ *       200:
+ *         description: Operación exitosa.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example:
+ *                 {
+ *                   "_id": "6737b35bf7320a530ade235b",
+ *                   "username": "admin",
+ *                   "pass": "admin",
+ *                   "nombre": "algo",
+ *                   "apellido": "apellido",
+ *                   "informacion": "info",
+ *                   "pronombre": "",
+ *                   "favoritos": [],
+ *                   "restricciones": [],
+ *                   "rol": "admin"
+ *                 }
+ */
+
 
 
 

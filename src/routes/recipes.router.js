@@ -2,7 +2,7 @@
  * @swagger
  * /recipes/allRecipes:
  *   get:
- *     summary: Subir una nueva receta
+ *     summary: Buscar la lista completa de recetas
  *     responses:
  *       200:
  *         description: Operación exitosa.
@@ -176,7 +176,108 @@
  *                   "apto": ["veggie"]
  *                 }
  */
-
+/**
+ * @swagger
+ * /recipes/delete/{id}:
+ *   delete:
+ *     summary: Borra una receta por id
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: Introduzca la id a borrar
+ *         schema:
+ *           type: string
+ *           example: 6733b5239bee9ca353f3cd4b
+ *     responses:
+ *       200:
+ *         description: Operación exitosa.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: onject
+ *               example:
+ *                  {
+ *                      "acknowledged": true,
+ *                      "deletedCount": 1
+ *                  }
+ */
+/**
+ * @swagger
+ * /recipes/update/{id}:
+ *   patch:
+ *     summary: Actualiza una receta por id
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: Introduzca la id de la receta a actualizar
+ *         schema:
+ *           type: string
+ *           example: 6733b5239bee9ca353f3cd4b
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Nombre de la receta
+ *                 example: Pollo
+ *     responses:
+ *       200:
+ *         description: Operación exitosa.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example:
+ *                 {
+ *                   "acknowledged": true,
+ *                   "modifiedCount": 1
+ *                 }
+ */
+/**
+ * @swagger
+ * /recipes/update/tags/{id}:
+ *   patch:
+ *     summary: Actualiza los tags de una receta por id
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: Introduzca la id de la receta a actualizar
+ *         schema:
+ *           type: string
+ *           example: 6733b5239bee9ca353f3cd4b
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               tags:
+ *                 type: array
+ *                 description: Lista de nuevos tags
+ *                 items:
+ *                   type: string
+ *                 example: ["Pollo", "Cena rápida", "Saludable"]
+ *     responses:
+ *       200:
+ *         description: Operación exitosa.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example:
+ *                 {
+ *                   "acknowledged": true,
+ *                   "modifiedCount": 1
+ *                 }
+ */
 
 
 
