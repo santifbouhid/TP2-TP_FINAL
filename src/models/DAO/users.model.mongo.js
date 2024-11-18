@@ -44,7 +44,7 @@ class UsersModelMongo {
     updateRestrictions = async (id, data) => {
         try{
         const restrictionsOk = ["vegan", "veggie", "gluten"]
-        const restrictionsIn = data.restricciones;
+        const restrictionsIn = data?.restricciones || [];
         const dataOk = restrictionsIn.every(e => restrictionsOk.includes(e));
         let resp;
         if (dataOk) {
