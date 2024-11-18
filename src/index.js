@@ -52,7 +52,6 @@ app.listen(PORT, () =>
   console.log(`Servidor corriendo en: http://localhost:${PORT}`)
 );
 
-await MongoConnection.connect()
 app.on("Error", (err) =>
   console.error("Hubo un problema con el servidor", err)
 );

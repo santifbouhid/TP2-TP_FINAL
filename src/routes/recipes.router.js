@@ -177,8 +177,225 @@
  *                 }
  */
 
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
 
 
+/**
+ * @swagger
+ * /recipes/byDifficulty/{difficulty}:
+ *   get:
+ *     summary: Obtener recetas por dificultad
+ *     tags:
+ *      - Recipes
+ *     description: Devuelve una lista de recetas filtradas por nivel de dificultad (fácil, medio, media, difícil).
+ *     parameters:
+ *       - name: difficulty
+ *         in: path
+ *         required: true
+ *         description: Nivel de dificultad de las recetas.
+ *         schema:
+ *           type: string
+ *           enum: [fácil, medio, media, difícil]
+ *           example: fácil
+ *     responses:
+ *       200:
+ *         description: Lista de recetas filtradas por dificultad.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   _id:
+ *                     type: string
+ *                     example: "6733b5239bee9ca353f3cd4b"
+ *                   name:
+ *                     type: string
+ *                     example: "Pizza Margarita Clásica"
+ *                   ingredients:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *                     example: ["Masa para pizza", "Salsa de tomate", "Queso mozzarella fresco"]
+ *                   instructions:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *                     example: [
+ *                       "Precalentar el horno a 245°C (475°F).",
+ *                       "Estirar la masa para pizza y esparcir la salsa de tomate de manera uniforme.",
+ *                       "Cubrir con rodajas de mozzarella fresca y hojas de albahaca.",
+ *                       "Rociar con aceite de oliva y sazonar con sal y pimienta.",
+ *                       "Hornear en el horno precalentado durante 12-15 minutos o hasta que la masa esté dorada.",
+ *                       "Cortar en porciones y servir caliente."
+ *                     ]
+ *                   prepTimeMinutes:
+ *                     type: integer
+ *                     example: 20
+ *                   cookTimeMinutes:
+ *                     type: integer
+ *                     example: 15
+ *                   servings:
+ *                     type: integer
+ *                     example: 4
+ *                   difficulty:
+ *                     type: string
+ *                     example: "Fácil"
+ *                   cuisine:
+ *                     type: string
+ *                     example: "Italiana"
+ *                   caloriesPerServing:
+ *                     type: integer
+ *                     example: 300
+ *                   tags:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *                     example: ["Pizza", "Italiana"]
+ *                   userId:
+ *                     type: integer
+ *                     example: 166
+ *                   image:
+ *                     type: string
+ *                     example: "https://cdn.dummyjson.com/recipe-images/1.webp"
+ *                   rating:
+ *                     type: number
+ *                     example: 4.6
+ *                   reviewCount:
+ *                     type: integer
+ *                     example: 98
+ *                   mealType:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *                     example: ["Cena"]
+ *                   apto:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *                     example: ["veggie"]
+ */
+
+/**
+ * @swagger
+ * /users/newUser:
+ *   post:
+ *     summary: Crear un nuevo usuario
+ *     description: Esta ruta permite crear un nuevo usuario.
+ *     tags:
+ *       - Users
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: "admin"
+ *               pass:
+ *                 type: string
+ *                 example: "admin"
+ *               nombre:
+ *                 type: string
+ *                 example: "algo"
+ *               apellido:
+ *                 type: string
+ *                 example: "apellido"
+ *               informacion:
+ *                 type: string
+ *                 example: "info"
+ *               pronombre:
+ *                 type: string
+ *                 example: ""
+ *               favoritos:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 example: []
+ *               restricciones:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 example: []
+ *               rol:
+ *                 type: string
+ *                 example: "admin"
+ *     responses:
+ *       200:
+ *         description: Usuario creado con éxito.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 acknowledged:
+ *                   type: boolean
+ *                   example: true
+ *                 insertedId:
+ *                   type: string
+ *                   example: "673bc713c6e2a52efa7cf1f9"
+ */
+
+
+/**
+ * @swagger
+ * /users/update/restrictions/{id}:
+ *   patch:
+ *     summary: Actualizar las restricciones de un usuario
+ *     description: Esta ruta permite actualizar las restricciones de un usuario específico mediante su ID.
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: El ID del usuario cuyo registro de restricciones se actualizará.
+ *         schema:
+ *           type: string
+ *           example: "6737b35bf7320a530ade235b"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               restricciones:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   enum: ["vegan", "veggie", "gluten"]
+ *                   description: "Las restricciones posibles son: 'vegan', 'veggie' y 'gluten'."
+ *                 example: ["vegan"]
+ *     responses:
+ *       200:
+ *         description: Restricciones actualizadas con éxito.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 acknowledged:
+ *                   type: boolean
+ *                   example: true
+ *                 modifiedCount:
+ *                   type: integer
+ *                   example: 1
+ *                 upsertedId:
+ *                   type: string
+ *                   nullable: true
+ *                   example: null
+ *                 upsertedCount:
+ *                   type: integer
+ *                   example: 0
+ *                 matchedCount:
+ *                   type: integer
+ *                   example: 1
+ */
 
 
 

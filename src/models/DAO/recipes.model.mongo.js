@@ -36,7 +36,7 @@ class RecipesModelMongo {
   }
 
   getRecipesByDifficulty = async (difficulty) => {
-    const recipesByRestriction = await MongoConnection.db.collection("recipes").find({ difficulty: difficulty }).toArray()
+    const recipesByRestriction = await MongoConnection.db.collection("recipes").find({ difficulty: RegExp(`^${difficulty}$`, 'i') }).toArray()
     return recipesByRestriction
   }
 
