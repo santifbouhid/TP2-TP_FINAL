@@ -1,5 +1,6 @@
 import RecipesController from "../controllers/recipes.controller.js";
 import express from 'express'
+import { roleAuth } from "../middleware/roleAuth.js";
 
 class RecipesRouter {
     constructor() {
@@ -13,7 +14,7 @@ class RecipesRouter {
         this.router.delete("/recipes/delete/:id", this.controller.deleteRecipeById)
         this.router.patch("/update/:id", this.controller.updateRecipe)
         this.router.patch("/update/tags/:id", this.controller.updateTags)
-        this.router.post("/newRecipe", this.controller.uploadNewRecipe)
+        this.router.post("/newRecipe", roleAuth, this.controller.uploadNewRecipe)
         return this.router;
     }
 }

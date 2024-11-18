@@ -5,6 +5,7 @@ import { GiphyFetch } from '@giphy/js-fetch-api'
 class RecipesService {
     constructor() {
         this.model = Factory.get(config.PERSISTENCE).recipes
+        this.defaultGif = config.DEFAULTGIF
     }
 
     getAllRecipes = async () => {
@@ -16,7 +17,7 @@ class RecipesService {
         const recipe = await this.model.getRecipeById(id)
         const primerNombre = recipe.name.split(" ")[0]
         const gif = await this.getGiphy(primerNombre)
-        const url = gif.data[0].url
+        const url = gif.data.length > 0 ? gif.data[0].images.original.url : this.defaultGif
         return {
             gif: url,
             recipe: recipe
