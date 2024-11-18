@@ -13,7 +13,7 @@ class RecipesService {
     }
 
     getRecipesById = async (id) => {
-        const recipe = await this.model.getRecipeById(id)
+        const recipe = await this.model.getRecipesById(id)
         const primerNombre = recipe.name.split(" ")[0]
         const gif = await this.getGiphy(primerNombre)
         const url = gif.data[0].url
@@ -21,6 +21,15 @@ class RecipesService {
             gif: url,
             recipe: recipe
         };
+    }
+    getRecipesByIngredient = async (ingredient) => {
+        return await this.model.getRecipesByIngredient(ingredient)
+    }
+    getRecipesByRestriction = async (apto) => {
+        return await this.model.getRecipesByRestriction(apto)
+    }
+    getRecipesByDifficulty = async (difficulty) => {
+        return await this.model.getRecipesByDifficulty(difficulty)
     }
     deleteRecipeById = async (id) => {
         return await this.model.deleteRecipeById(id)

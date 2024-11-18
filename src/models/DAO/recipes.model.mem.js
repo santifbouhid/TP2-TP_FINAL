@@ -150,6 +150,36 @@ class RecipesModelMem {
     }
   }
 
+  getRecipesByDifficulty = async (difficulty) => {
+    const allRecipes = await this.recipes
+    const recipesByDifficulty = allRecipes.filter(r => r.difficulty.toLowerCase() === difficulty.toLowerCase());
+    if (recipesByDifficulty.length === 0) {
+      return `No existen recetas con dificultad ${difficulty}! `
+    } else {
+      return recipesByDifficulty
+    }
+  }
+
+  getRecipesByIngredient = async (ingredient) => {
+    const allRecipes = await this.recipes
+    const RecipesByIngredient = await allRecipes.filter(r => r.ingredients.includes(ingredient));
+    if (RecipesByIngredient.length === 0) {
+      return `No existen recetas con este ingrediente: ${apto}! `
+    } else {
+      return RecipesByIngredient
+    }
+  }
+
+  getRecipesByRestriction = async (apto) => {
+    const allRecipes = await this.recipes
+    const recipesByRestriction = await allRecipes.filter(r => r.apto.includes(apto));
+    if (recipesByRestriction.length === 0) {
+      return `No existen recetas con estas restricciones: ${apto}! `
+    } else {
+      return recipesByRestriction
+    }
+  }
+
   deleteRecipeById = async (id) => {
     const index = recipes.findIndex((e) => e.id == id)
     let resp
@@ -161,24 +191,56 @@ class RecipesModelMem {
     }
     return resp
   }
-  //   addTagsToRecipe = async (id, tag) => {
-  //     let resp;
-  //     const index = this.recipes.findIndex((r) => r.id == id)
-  //     if (index !== -1){
 
-  //     }else{
-
-  //     }
-
-
-  //     return  
-  //   }
   uploadNewRecipe = async (recipe) => {
     const allRecipes = await this.recipes
     const idNew = allRecipes[allRecipes.length - 1].id + 1
     recipe.id = idNew
     this.recipes.push(recipe)
     return recipe
+  }
+
+  updateRecipe = async (id, data) => {
+    try {
+      let resp
+      if (data !== null) {
+        const index = await this.recipes.findIndex(r => r.id == id)
+        if (index > -1) {
+          const newRecipe = { ...this.recipes[index], ...data }
+          this.recipes.splice(index, 1, newRecipe)
+        } else {
+          resp = 'Id inválido';
+        }
+      } else {
+        throw new Error("La información que intenta agregar no existe.")
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+  updateTags = async (id, data) => {
+    try {
+      let resp;
+      if (data.tags !== undefined) {
+        const index = await this.recipes.findIndex(r => r.id == id)
+        if (index > -1) {
+          const newRecipe = { ...this.recipes[index], ...data.tags }
+          this.recipes.splice(index, 1, newRecipe)
+          resp = newRecipe
+        } else {
+          resp = 'Id inválido';
+        }
+      } else {
+        resp = 'Tags inválidos';
+      }
+
+      return await resp;
+
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 }
