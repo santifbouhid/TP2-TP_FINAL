@@ -3,6 +3,8 @@
  * /recipes/allRecipes:
  *   get:
  *     summary: Buscar la lista completa de recetas
+ *     tags:
+ *       - Recipes
  *     responses:
  *       200:
  *         description: Operación exitosa.
@@ -51,6 +53,8 @@
  * /recipes/newRecipe:
  *   post:
  *     summary: Crear una nueva receta
+ *     tags:
+ *       - Recipes
  *     parameters:
  *       - name: role
  *         in: header
@@ -181,6 +185,8 @@
  * /recipes/delete/{id}:
  *   delete:
  *     summary: Borra una receta por id
+ *     tags:
+ *       - Recipes
  *     parameters:
  *       - name: id
  *         in: path
@@ -207,6 +213,8 @@
  * /recipes/update/{id}:
  *   patch:
  *     summary: Actualiza una receta por id
+ *     tags:
+ *       - Recipes
  *     parameters:
  *       - name: id
  *         in: path
@@ -244,6 +252,8 @@
  * /recipes/update/tags/{id}:
  *   patch:
  *     summary: Actualiza los tags de una receta por id
+ *     tags:
+ *       - Recipes
  *     parameters:
  *       - name: id
  *         in: path

@@ -3,6 +3,8 @@
  * /users/users:
  *   get:
  *     summary: Traer todos los usuarios
+ *     tags:
+ *       - Users
  *     parameters:
  *       - name: role
  *         in: header
@@ -37,6 +39,8 @@
  * /users/id/{id}:
  *   get:
  *     summary: Trae un usuario por ID
+ *     tags:
+ *       - Users
  *     parameters:
  *       - name: id
  *         in: path
