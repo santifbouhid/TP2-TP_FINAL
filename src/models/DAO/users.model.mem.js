@@ -13,7 +13,14 @@ class UsersModelMem {
         }
     }
 
-
+    getUsersByRol = async (rol) => {
+        const allUsers = await this.users
+        const user = allUsers.filter(user => user.rol === rol)
+        if (user.length === 0) {
+           return `El usuario con el rol ${rol} no existe`
+        } else {
+           return user
+      }
 
     getAllUsers = async () => {
         return this.users
