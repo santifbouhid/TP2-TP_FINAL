@@ -11,13 +11,13 @@ class RecipesRouter {
     start() {
         this.router.get("/allRecipes", this.controller.getAllRecipes)
         this.router.get("/recipes/:id", this.controller.getRecipesById)
-        this.router.get("/byRestrictions/:apto", this.controller.getRecipesByRestriction)//
-        this.router.get("/byIngredient/:ingredient", this.controller.getRecipesByIngredient)//
-        this.router.get("/byDifficulty/:difficulty", this.controller.getRecipesByDifficulty)//
-        this.router.delete("/delete/:id", this.controller.deleteRecipeById)
+        this.router.get("/byRestrictions/:apto", this.controller.getRecipesByRestriction)
+        this.router.get("/byIngredient/:ingredient", this.controller.getRecipesByIngredient)
+        this.router.get("/byDifficulty/:difficulty", this.controller.getRecipesByDifficulty)
+        this.router.post("/newRecipe", roleAuth, this.controller.uploadNewRecipe)
         this.router.patch("/update/:id", this.controller.updateRecipe)
         this.router.patch("/update/tags/:id", this.controller.updateTags)
-        this.router.post("/newRecipe", roleAuth, this.controller.uploadNewRecipe)
+        this.router.delete("/delete/:id", this.controller.deleteRecipeById)
         return this.router;
     }
 }
@@ -162,7 +162,7 @@ export default RecipesRouter;
  *         description: Restricción de las recetas.
  *         schema:
  *           type: string
- *           enum: [veggie, gluten-free, dairy-free, nut-free, soy-free]
+ *           enum: [vegan, veggie, gf]
  *           example: veggie
  *     responses:
  *       200:

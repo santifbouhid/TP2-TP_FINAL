@@ -235,7 +235,6 @@ class RecipesModelMem {
         const index = await this.recipes.findIndex(r => r.id == id)
         if (index > -1) {
           const newRecipe = { ...this.recipes[index], ...data }
-          console.log(newRecipe)
           this.recipes.splice(index, 1, newRecipe)
           resp = newRecipe
         } else {

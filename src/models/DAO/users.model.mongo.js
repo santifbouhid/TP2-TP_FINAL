@@ -42,21 +42,21 @@ class UsersModelMongo {
     }
 
     updateRestrictions = async (id, data) => {
-        try{
-        const restrictionsOk = ["vegan", "veggie", "gluten"]
-        const restrictionsIn = data?.restricciones || [];
-        const dataOk = restrictionsIn.every(e => restrictionsOk.includes(e));
-        let resp;
-        if (dataOk) {
-            resp = await MongoConnection.db.collection("users").updateOne(
-                { _id: ObjectId.createFromHexString(id) },
-                { $set: {"restricciones": data.restricciones} }
-              );       
-        }else{
-            resp = 'Restricciones inválidas';
-        }
-        return await resp;
-        } catch(error){
+        try {
+            const restrictionsOk = ["vegan", "veggie", "gluten"]
+            const restrictionsIn = data?.restricciones || [];
+            const dataOk = restrictionsIn.every(e => restrictionsOk.includes(e));
+            let resp;
+            if (dataOk) {
+                resp = await MongoConnection.db.collection("users").updateOne(
+                    { _id: ObjectId.createFromHexString(id) },
+                    { $set: { "restricciones": data.restricciones } }
+                );
+            } else {
+                resp = 'Restricciones inválidas';
+            }
+            return await resp;
+        } catch (error) {
             console.log(error);
         }
     }

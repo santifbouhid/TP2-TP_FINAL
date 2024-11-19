@@ -36,8 +36,6 @@ class UsersService {
     updateUser = async (id, data) => {
         return await this.model.updateUser(id, data);
     }
-    
-
 }
 
 export default UsersService;

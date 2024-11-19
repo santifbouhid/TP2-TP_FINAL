@@ -36,7 +36,6 @@ class UsersController {
             const deletedUser = await this.service.deleteUserById(id)
             res.status(200).send(deletedUser)
         }
-
     }
 
     getUsersByRol = async (req, res) => {
