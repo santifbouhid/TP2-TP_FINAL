@@ -143,26 +143,25 @@ class UsersModelMem {
     }
 
     updateRestrictions = async (id, data) => {
-        try{
-   
-        const restrictionsOk = ["vegan", "veggie", "gluten"]
-        const restrictionsIn = data?.restricciones || [];
-        const dataOk = restrictionsIn.every(e => restrictionsOk.includes(e));
-        let resp;
-        if (dataOk) {
-            const index = await this.users.findIndex(u => u.id == id)
-            if (index > -1) {
-                const newUser = { ...this.users[index], ...data }
-                this.users.splice(index, 1, newUser)
-                resp = newUser;
+        try {
+            const restrictionsOk = ["vegan", "veggie", "gluten"]
+            const restrictionsIn = data?.restricciones || [];
+            const dataOk = restrictionsIn.every(e => restrictionsOk.includes(e));
+            let resp;
+            if (dataOk) {
+                const index = await this.users.findIndex(u => u.id == id)
+                if (index > -1) {
+                    const newUser = { ...this.users[index], ...data }
+                    this.users.splice(index, 1, newUser)
+                    resp = newUser;
+                } else {
+                    resp = 'Id inválido';
+                }
             } else {
-                resp = 'Id inválido';
-            }    
-        }else{
-            resp = 'Restricciones inválidas';
-        }
-        return await resp;
-        } catch(error){
+                resp = 'Restricciones inválidas';
+            }
+            return await resp;
+        } catch (error) {
             console.log(error);
         }
     }

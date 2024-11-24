@@ -11,6 +11,7 @@
 ## Correr el proyecto
 script `npm start` o `npm run watch`
 El proyecto corre en el puerto 8080: `http://localhost:8080` por default, en caso de no estar disponible corre en `http://localhost:8081`
+Para ver la documentacion y testear las rutas, ir a `http://localhost:8080/api-docs`
 
 ## Tests
 Con el proyecto corriendo, usar el script `npm run test` para correr los tests

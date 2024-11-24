@@ -12,13 +12,13 @@ class UsersRouter {
         this.router.get("/id/:id", this.controller.getUserById)
         this.router.get("/users", roleAuth, this.controller.getAllusers)
         this.router.get("/username/:name", this.controller.getUserByUsername)
-        this.router.delete("/delete/:id", this.controller.deleteUserById)
         this.router.get("/rol/:rol", this.controller.getUsersByRol)
         this.router.post("/newUser", this.controller.uploadNewUser)
         this.router.patch("/update/restrictions/:id", this.controller.updateRestrictions)
         this.router.patch("/update/:id", this.controller.updateUser)
         this.router.patch("/update/addRecetaFavorita/:id", this.controller.addRecetaFavorita)
         this.router.patch("/update/removeRecetaFavorita/:id", this.controller.removeRecetaFavorita)
+        this.router.delete("/delete/:id", this.controller.deleteUserById)
 
         return this.router;
     }
@@ -105,7 +105,7 @@ export default UsersRouter;
  * @swagger
  * /users/username/{name}:
  *   get:
- *     summary: Traer todos los usuarios
+ *     summary: Traer usuario por username
  *     tags:
  *       - Users
  *     parameters:
@@ -293,7 +293,7 @@ export default UsersRouter;
  * @swagger
  * /users/update/{id}:
  *   patch:
- *     summary: Actualiza una receta por id
+ *     summary: Actualiza un usuario por id
  *     tags:
  *       - Users
  *     parameters:

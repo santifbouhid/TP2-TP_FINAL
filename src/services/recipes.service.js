@@ -16,7 +16,6 @@ class RecipesService {
     getRecipesById = async (id) => {
         const recipe = await this.model.getRecipesById(id)
         if(recipe !== undefined){
-            console.log("servicio",recipe)
             const primerNombre = recipe.name.split(" ")[0]
             const gif = await this.getGiphy(primerNombre)
             const url = gif.data.length > 0 ? gif.data[0].images.original.url : this.defaultGif

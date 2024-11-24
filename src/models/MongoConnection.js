@@ -6,9 +6,7 @@ class MongoConnection {
     static db = this.client.db(config.BASE)
 
     static connect = async() => {
-       
-        await this.client.connect()
-        
+        await this.client.connect()   
     }
 }
 

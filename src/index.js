@@ -3,13 +3,8 @@ import RecipesRouter from "./routes/recipes.router.js";
 import UsersRouter from "./routes/users.router.js";
 import config from "./config.js";
 import MongoConnection from "./models/MongoConnection.js";
-
 import swaggerUi from 'swagger-ui-express';
 import swaggerjsdoc from 'swagger-jsdoc'
-
-
-
-
 
 const app = express();
 const PORT = config.PORT;
@@ -20,8 +15,6 @@ app.use(express.json());
 app.use("/recipes", new RecipesRouter().start());
 app.use("/users", new UsersRouter().start())
 
-
-
 const swaggerOptions = {
     definition: {
         openapi: '3.0.0',
@@ -30,7 +23,7 @@ const swaggerOptions = {
             version: '1.0.0',
             description: 'CookIT, tu API de recetas',
         },
-        servers:[
+        servers: [
             {
                 url: "http://localhost:8080",
             },
@@ -39,23 +32,18 @@ const swaggerOptions = {
     apis: ['./src/routes/*.router.js'],
 }
 
-
 const spacs = swaggerjsdoc(swaggerOptions)
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(spacs));
 
-
-
-
 await MongoConnection.connect()
+
 app.listen(PORT, () =>
-  console.log(`Servidor corriendo en: http://localhost:${PORT}`)
+    console.log(`Servidor corriendo en: http://localhost:${PORT}`)
 );
 
 app.on("Error", (err) =>
-  console.error("Hubo un problema con el servidor", err)
+    console.error("Hubo un problema con el servidor", err)
 );
 
 console.log('Swagger Docs available at http://localhost:8080/api-docs');
-
-
